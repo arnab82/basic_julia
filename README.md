@@ -1,2 +1,2 @@
 # basic_julia
-intoduction to julia
+introduction to julia
