@@ -180,3 +180,46 @@ for num = arr
 end
 average = sum / n 
 println(average)
+arr = [3, 5, 7, 9, 42, 999, 11, 13, 15, 999, 44];
+for el ∈ arr
+    if el == 999
+        println("Break condition is met!")
+        break
+    end
+    println(el)
+end
+i = 1
+while i <= length(arr)
+    if arr[i] == 999
+        println("Break condition is met!")
+        break
+    end
+    println(arr[i])
+    global i += 1
+end
+for el ∈ arr
+    if el == 999
+        println("Continue condition is met")
+        continue
+    end
+    println(el)
+end
+i = 0
+while i < length(arr)
+    global i += 1
+    if arr[i] == 999          
+        continue
+    end
+    println(arr[i])
+end
+for el ∈ arr 
+    if el % 2 == 1 continue end
+    println(el)
+end
+numtries = 0
+while true
+    global numtries +=1
+    m, n = rand((1:6)), rand((1:6))
+    if (m,n) == (6,6) break end
+end
+println("It took $numtries tries to get (6,6).")
