@@ -1,0 +1,35 @@
+using Fermi
+
+@molecule {
+  O        1.2091536548      1.7664118189     -0.0171613972
+  H        2.1984800075      1.7977100627      0.0121161719
+  H        0.9197881882      2.4580185570      0.6297938830
+}
+
+@set basis cc-pvtz
+@energy ccsdusing Fermi
+using Makie
+using GLMakie
+
+R = [0.5 + 0.1*i for i = 1:20]
+E = Float64[]
+
+@set basis cc-pvdz
+
+for r in R
+
+    molstring = """
+        N 0.0 0.0 0.0
+        N $r  0.0 0.0"""
+
+    Fermi.Options.set("molstring", molstring)
+
+    wfn = @energy rhf
+
+    push!(E, wfn.energy)
+end
+
+f = Figure()
+ax = Axis(f[1,1], xlabel="Bond Length (Å)", ylabel="Energy (Hartrees)")
+Makie.lines!(R, E, color=:red, linestyle=:dash)
+f
